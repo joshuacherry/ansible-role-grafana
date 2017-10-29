@@ -1,0 +1,27 @@
+---
+- name: GRAFANA | Configure systemd service
+  systemd:
+    state: started
+    enabled: yes
+    daemon_reload: yes
+    name: grafana-server
+
+- name: "GRAFANA | Manage {{ grafana_conf_dir }}/grafana.ini"
+  template:
+    src: grafana.ini.j2
+    dest: "{{ grafana_conf_dir }}/grafana.ini"
+    owner: "{{ grafana_user }}"
+    group: "{{ grafana_group }}"
+    mode: 0644
+  notify:
+    - restart grafana-server
+
+- name: "GRAFANA | Manage {{ grafana_conf_dir }}/ldap.toml"
+  template:
+    src: ldap.toml.j2
+    dest: "{{ grafana_conf_dir }}/ldap.toml"
+    owner: "{{ grafana_user }}"
+    group: "{{ grafana_group }}"
+    mode: 0644
+  notify:
+    - restart grafana-server

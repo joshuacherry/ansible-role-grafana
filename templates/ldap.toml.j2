@@ -1,0 +1,16 @@
+## Ansible Managed
+
+[[servers]]
+{{ grafana_ldap_servers }}
+
+[servers.attributes]
+{{ grafana_ldap_servers_attributes }}
+
+# Map ldap groups to grafana org roles
+{% for items in grafana_ldap_group_mapping %}
+[[servers.group_mappings]]
+group_dn = "{{ items.group_dn}}"
+org_role = "{{ items.org_role}}"
+org_id = "{{ items.org_id}}"
+
+{% endfor %}

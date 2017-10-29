@@ -1,0 +1,16 @@
+- name: GRAFANA | Add APT GPG Key
+  apt_key:
+    url: https://packagecloud.io/gpg.key
+    state: present
+
+- name: GRAFANA | Add APT Repository
+  apt_repository:
+    repo: "deb https://packagecloud.io/grafana/stable/debian/ jessie main"
+    state: present
+    filename: 'grafana'
+
+- name: GRAFANA | Install Grafana
+  apt:
+    name: "grafana={{ grafana_version }}"
+    update_cache: yes
+    state: present

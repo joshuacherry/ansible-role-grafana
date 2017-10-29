@@ -1,0 +1,39 @@
+- name: GRAFANA | Add YUM Repository
+  yum_repository:
+    name: grafana
+    description: Grafana
+    baseurl: https://packagecloud.io/grafana/stable/el/6/$basearch
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey: "https://packagecloud.io/gpg.key https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana"
+    enabled: yes
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: GRAFANA | import rpm keys
+  rpm_key: 
+    state: present
+    key: "{{ item }}"
+  with_items:
+    - https://packagecloud.io/gpg.key
+    - https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
+  register: import_key
+
+### FIXME - temporary while issues are resolved ###
+# https://github.com/ansible/ansible/issues/20711
+# https://github.com/newrelic/infrastructure-agent-ansible/pull/20
+- name: Make cache
+  command: "yum -q makecache -y --disablerepo='*' --enablerepo='grafana'"
+  when: import_key.changed
+### FIXME ###
+
+- name: GRAFANA | Install Grafana
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "grafana"
+    - "fontconfig"
+    - "freetype*"
+    - "urw-fonts"

@@ -1,0 +1,136 @@
+## Ansible Managed
+
+{{ grafana_ini_general }}
+
+#################################### Paths ####################################
+[paths]
+{{ grafana_ini_paths }}
+
+#################################### Server ####################################
+[server]
+{{ grafana_ini_server }}
+
+#################################### Database ####################################
+[database]
+{{ grafana_ini_database }}
+
+#################################### Session ####################################
+[session]
+{{ grafana_ini_session }}
+
+#################################### Data proxy ###########################
+[dataproxy]
+{{ grafana_ini_dataproxy }}
+
+#################################### Analytics ####################################
+[analytics]
+{{ grafana_ini_analytics }}
+
+#################################### Security ####################################
+[security]
+{{ grafana_ini_security }}
+
+[snapshots]
+{{ grafana_ini_snapshots }}
+
+#################################### Users ####################################
+[users]
+{{ grafana_ini_users }}
+
+[auth]
+{{ grafana_ini_auth }}
+
+#################################### Anonymous Auth ##########################
+[auth.anonymous]
+{{ grafana_ini_auth_anonymous }}
+
+#################################### Github Auth ##########################
+[auth.github]
+{{ grafana_ini_auth_github }}
+
+#################################### Google Auth ##########################
+[auth.google]
+{{ grafana_ini_auth_google }}
+
+#################################### Generic OAuth ##########################
+[auth.generic_oauth]
+{{ grafana_ini_auth_generic_oauth }}
+
+#################################### Grafana.com Auth ####################
+[auth.grafana_com]
+{{ grafana_ini_auth_grafana_com }}
+
+#################################### Auth Proxy ##########################
+[auth.proxy]
+{{ grafana_ini_auth_proxy }}
+
+#################################### Basic Auth ##########################
+[auth.basic]
+{{ grafana_ini_auth_basic }}
+
+#################################### Auth LDAP ##########################
+[auth.ldap]
+{{ grafana_ini_auth_ldap }}
+
+#################################### SMTP / Emailing ##########################
+[smtp]
+{{ grafana_ini_smtp }}
+
+[emails]
+{{ grafana_ini_emails }}
+
+#################################### Logging ##########################
+[log]
+{{ grafana_ini_log }}
+
+[log.console]
+{{ grafana_ini_log_console }}
+
+[log.file]
+{{ grafana_ini_log_file }}
+
+[log.syslog]
+{{ grafana_ini_log_syslog }}
+
+#################################### AMQP Event Publisher ##########################
+[event_publisher]
+{{ grafana_ini_event_publisher }}
+
+#################################### Dashboard JSON files ##########################
+[dashboards.json]
+{{ grafana_ini_dashboards_json }}
+
+
+#################################### Alerting ############################
+[alerting]
+{{ grafana_ini_alerting }}
+
+#################################### Internal Grafana Metrics ##########################
+
+[metrics]
+{{ grafana_ini_metrics }}
+
+[metrics.graphite]
+{{ grafana_ini_metrics_graphite }}
+
+#################################### Distributed tracing ############
+[tracing.jaeger]
+{{ grafana_ini_jaeger }}
+
+#################################### Grafana.com integration  ##########################
+
+[grafana_com]
+{{ grafana_ini_grafana_com }}
+
+#################################### External image storage ##########################
+[external_image_storage]
+{{ grafana_ini_external_image_storage }}
+
+[external_image_storage.s3]
+{{ grafana_ini_external_image_storage_s3 }}
+
+[external_image_storage.webdav]
+{{ grafana_ini_external_image_storage_webdav }}
+
+[external_image_storage.gcs]
+{{ grafana_ini_external_image_storage_gcs }}

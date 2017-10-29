@@ -1,0 +1,17 @@
+---
+- name: GRAFANA | Check grafana version
+  command: grafana-server -v
+  register: grafana_check
+  changed_when: false
+  ignore_errors: true
+
+- include_tasks: install-debian.yml
+  static: no
+  when: '(ansible_os_family == "Debian") and (grafana_check|failed or "Version grafana_version" not in grafana_check.stderr)'
+
+- include_tasks: install-redhat.yml
+  static: no
+  when: '(ansible_os_family == "RedHat") and (grafana_check|failed or "Version grafana_version" not in grafana_check.stderr)'
+
+- include_tasks: configure-grafana.yml
+  static: no

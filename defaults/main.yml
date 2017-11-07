@@ -6,6 +6,9 @@ grafana_user: grafana
 grafana_group: grafana
 grafana_conf_dir: /etc/grafana
 
+grafana_plugins:
+  - grafana-clock-panel
+
 # grafana ini variables
 # see http://docs.grafana.org/installation/configuration/ for more details
 grafana_ini_general: |

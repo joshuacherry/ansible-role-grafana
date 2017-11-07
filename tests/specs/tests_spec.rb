@@ -25,4 +25,8 @@ control '01' do
     its('status') { should cmp 200 }
   end
 
+  describe file('/var/lib/grafana/plugins/grafana-clock-panel') do
+    it { should exist }
+   end
+
 end

@@ -25,3 +25,11 @@
     mode: 0644
   notify:
     - restart grafana-server
+
+- name: "GRAFANA | Install plugins"
+  command: 'grafana-cli plugins install {{ item }}'
+  args:
+    creates: '/var/lib/grafana/plugins/{{ item }}'
+  notify:
+    - restart grafana-server
+  with_items: "{{ grafana_plugins }}"
